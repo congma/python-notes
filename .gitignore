@@ -13,6 +13,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Notebook states
+.ipynb_checkpoints/
+.ipynb_checkpoints/*
+
 # C extensions
 *.so
 *.dylib
