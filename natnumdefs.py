@@ -51,11 +51,11 @@ def succ(n):
 
 # Unique predecessor.
 def pred(n):
-    """Predecessor function.  Raises ValueError when input is zero."""
+    """Predecessor function.  Raises ArithmeticError when input is zero."""
     try:
         return max(n)
     except ValueError:
-        raise ValueError("No predecessor to zero.")
+        raise ArithmeticError("No predecessor to zero.")
 
 
 # Idioms to ease programming and reduce typing.
@@ -115,7 +115,7 @@ def add(m, n):
 
 def sub_r(m, n):
     """Subtraction function (recursive).
-    Raises ValueError when m is less than n.
+    Raises ArithmeticError when m is less than n.
     Can reach recursion limit imposed by Python or the hosting OS, raising
     RuntimeError.  For demo only.
     """
@@ -126,7 +126,7 @@ def sub_r(m, n):
 
 def sub(m, n):
     """Subtraction function (without recursion).
-    Raises ValueError when m is less than n.
+    Raises ArithmeticError when m is less than n.
     """
     return reduce(p, xrange_(n), m)
 
@@ -153,11 +153,11 @@ def pow_(m, n):
 
 def divmod_(m, n):
     """Integer division function.  Emulates Python divmod().
-    Returns tuple (quotient, remainder).  Raises ValueError when dividing by
-    zero.
+    Returns tuple (quotient, remainder).  Raises ZeroDivisionError when
+    dividing by zero.
     """
     if n == zero:
-        raise ValueError("Division by zero.")
+        raise ZeroDivisionError("Division by zero.")
     rem = m
     quot = zero
     # Can be implemented without looping, by suitably wrapping reduce()
@@ -165,7 +165,7 @@ def divmod_(m, n):
     while True:
         try:
             rem = sub(rem, n)
-        except ValueError:
+        except ArithmeticError:
             return quot, rem
         quot = succ(quot)
 
